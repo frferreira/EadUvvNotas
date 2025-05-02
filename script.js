@@ -148,6 +148,7 @@ async function processFiles() {
  
   const status = document.getElementById("status");
 
+  
   output.value = "Processando arquivos...\n";
 
   for (let i = 0; i < files.length; i++) {
