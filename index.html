@@ -1,41 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
 
-<!DOCTYPE html>  
-<html lang="pt-br">  
-<head>  
-  <meta charset="UTF-8">  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-  <title>Lançamento de Notas no EAD UVV</title>  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>  
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lançamento de Notas no EAD UVV</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
   <script src="script.js"></script>
   <link rel="stylesheet" href="style.css">
 
-</head>  
-<body>  
-  <div class="container">  
-    <h1>Processamento de Notas e geração de script</h1>  
-    <p>Selecione um ou vários arquivos XLSX exportado com as notas:</p>  
-    <input type="file" id="fileInput" multiple accept=".xlsx" />  
-    <button onclick="processFiles()">Processar arquivo(s)</button>  
-    <textarea id="output" readonly></textarea>  
+</head>
+
+<body>
+  <div class="container">
+    <h1>Processamento de Notas e geração de script</h1>
+    <p>Selecione um ou vários arquivos XLSX exportado com as notas:</p>
+    <input type="file" id="fileInput" multiple accept=".xlsx" />
+    <button onclick="processFiles()">Processar arquivo(s)</button>
+    <textarea id="output" readonly></textarea>
     <br>
     <p id="status"></p>
   </div>
+  <!-- <div class="container">
+    <input type="text" id="linkSiteNotas" placeholder="Cole o link do site de notas aqui" />
+    <button id="abrirSiteNotas" onclick="abrirSiteNotas()">Abrir Site de Notas</button> 
+    <iframe id="iframeA" src="https://ceadgraduacao.uvv.br/mod/assign/view.php?id=97724&action=grading" style="width:600px;height:500px"></iframe>
+    <button onclick="executarNoA()">Executar Função no Site A</button>
+    <script>
+      function executarNoA() {
+        const iframe = document.getElementById('iframeA');
+        iframe.contentWindow.postMessage("executarProcessamento", "https://site-a.com");
+      }  
+    </script>
+  </div> -->
   <div class="container">
+    <table> 
+        <thead> 
+          <tr>
+            <th colspan="3">Versão 2.0</th>
+          </tr>
+          <tr>
+            <td>02/05/25</td>
+            <td>2.0 </td>
+            <td>Incluido a função para lançar nota direto na pauta. Basta manter a estrutura do XML com os nomes e notas</td>
+          </tr>
+        </thead>
+    </table>
     <h2>Instruções de Uso</h2>
     <ol>
-      <li>Exporte o relatório de notas como excel <p><img width="550px" src="./img/Img-export-rel.png" title="exportação relatório" alt="Exportação do relatório"></li></p>
-      <li>Mantenha o cabeçalho original do relatório <p><img width="550px" src="./img/cabecalho-original.png" alt="Cabeçalho original"></p></li>
+      <li>Exporte o relatório de notas como excel <p><img width="550px" src="./img/Img-export-rel.png"
+            title="exportação relatório" alt="Exportação do relatório"></li>
+      </p>
+      <li>Mantenha o cabeçalho original do relatório <p><img width="550px" src="./img/cabecalho-original.png"
+            alt="Cabeçalho original"></p>
+      </li>
       <li> Selecione um ou vários relatórios XLSX no botão escolher arquivo e clique em processar</li>
       <li>O conteúdo gerado será copiado para a memória</li>
-      <li>Abra a página de lançamento de notas e acione a tecla F12 <p><img src="./img/lancamento-notas.png" width="550px" alt="Lançamento de notas"></p></li>
-      <li>Na aba console cole o conteúdo copiado e pressione enter <p><img src="./img/executando-script.png" width="550px" alt="Executando o script"></p></li>
+      <li>Abra a página de lançamento de notas e acione a tecla F12 <p><img src="./img/lancamento-notas.png"
+            width="550px" alt="Lançamento de notas"></p>
+      </li>
+      <li>Na aba console cole o conteúdo copiado e pressione enter <p><img src="./img/executando-script.png"
+            width="550px" alt="Executando o script"></p>
+      </li>
     </ol>
-    
-  </div>  
 
-  <script>  
-    
-  </script>  
-</body>  
-</html>  
+  </div>
+
+  <script>
+
+  </script>
+
+  <p style="text-align: right;"><a href="index2.html">Versão 2</a></p>
+</body>
+
+</html>
