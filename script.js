@@ -35,9 +35,15 @@ function script_string() {
   "          for (let linha of linhas) {\n"+
   "            // Busca o nome na linha (ignorando maiúsculas/minúsculas e espaços extras)\n"+
   "            if (linha.innerText && linha.innerText.toLowerCase().trim().includes(nome.toLowerCase().trim())) {\n"+
-  "              // Procura o campo input da AV1 (ajuste o seletor se necessário)\n"+
-  "              // Supondo que há só 1 input de nota por linha e que é o de AV1:\n"+
-  "              const inputAV1 = linha.querySelector('input');\n"+
+  "            // Procura o campo input da AV1 (ajuste o seletor se necessário)\n"+
+  "            // Supondo que há só 1 input de nota por linha e que é o de AV1:\n"+
+  "            const inputs = linha.querySelectorAll('input');\n"+
+  "            let inputAV1 = inputs[0]; // Primeiro input na linha (ajuste conforme necessário)\n"+
+  "            if (inputs.length > 1) {console.log(inputAV1.value)}\n"+
+  "           //if (!(inputAV1.value || inputAV1.value.trim() === '' || isNaN(Number(inputAV1.value.replace(',', '.'))))) {\n"+
+  "           if (inputs.length > 1 && !(inputAV1.value.trim() === '' || isNaN(Number(inputAV1.value.replace(',', '.'))))) {\n"+
+  "              inputAV1 = inputs[1];\n"+
+  "            }\n"+
   "              if (inputAV1) {\n"+
   "                inputAV1.value = nota;\n"+
   "                inputAV1.dispatchEvent(new Event('input', { bubbles: true }));\n"+
@@ -103,13 +109,19 @@ function localizarNomeEInserirNota(nome, nota) {    // Normalize o nome para evi
             if (linha.innerText && linha.innerText.toLowerCase().trim().includes(nome.toLowerCase().trim())) {
               // Procura o campo input da AV1 (ajuste o seletor se necessário)
               // Supondo que há só 1 input de nota por linha e que é o de AV1:
-              const inputAV1 = linha.querySelector('input');
+              const inputs = linha.querySelectorAll('input');
+              let inputAV1 = inputs[0]; // Primeiro input na linha (ajuste conforme necessário)
+              console.log(inputAV1.value)
+             //if (!(inputAV1.value || inputAV1.value.trim() === '' || isNaN(Number(inputAV1.value.replace(',', '.'))))) {
+             if (inputs.length > 1 && !(inputAV1.value.trim() === '' || isNaN(Number(inputAV1.value.replace(',', '.'))))) {
+                inputAV1 = inputs[1];
+              }
               if (inputAV1) {
                 inputAV1.value = nota;
                 inputAV1.dispatchEvent(new Event('input', { bubbles: true }));
                 inputAV1.dispatchEvent(new Event('change', { bubbles: true }));
                 inputAV1.dispatchEvent(new Event('blur', { bubbles: true }));
-                linhas.style.backgroundColor = 'yellow';
+                linha.style.backgroundColor = 'yellow';
                 inputAV1.style.backgroundColor = 'lightgreen';
                 return true; // Sucesso
               }
