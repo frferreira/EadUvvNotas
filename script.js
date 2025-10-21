@@ -1,6 +1,12 @@
 function script_string() {
-  return "function localizarNomeEInserirNota(nome, nota) {    // Normalize o nome para evitar problemas com case sensitivity.  \n"+
-  "  const nomeNormalizado = nome.trim().toLowerCase();\n"+
+  return "const removerAcentos = (str) => {\n"+
+  "return str\n"+
+  "  .normalize('NFD') // Decompõe caracteres em letra base e acento\n"+
+  "  .replace(/[\u0300-\u036f]/g, ''); // Remove os sinais diacríticos\n"+
+  "};\n"+
+  "\n"+
+  "function localizarNomeEInserirNota(nome, nota) {    // Normalize o nome para evitar problemas com case sensitivity.  \n"+
+  "  const nomeNormalizado = removerAcentos(nome.trim().toLowerCase());\n"+
   "\n"+
   "  // Obtenha todos os elementos que podem conter o nome.  \n"+
   "  const elementos = document.body.querySelectorAll('*');\n"+
@@ -9,7 +15,7 @@ function script_string() {
   "  elementos.forEach((elemento) => {\n"+
   "    // Verifique se o elemento possui texto visível e contém o nome que buscamos.  \n"+
   "    if (elemento.innerText && elemento.innerText.trim()) {\n"+
-  "      const texto = elemento.innerText.toLowerCase();\n"+
+  "      const texto = removerAcentos(elemento.innerText.toLowerCase());\n"+
   "\n"+
   "      if (texto.includes(nomeNormalizado)) {\n"+
   "        // Nome encontrado  \n"+
@@ -34,7 +40,7 @@ function script_string() {
   "          const linhas = document.querySelectorAll('tr');\n"+
   "          for (let linha of linhas) {\n"+
   "            // Busca o nome na linha (ignorando maiúsculas/minúsculas e espaços extras)\n"+
-  "            if (linha.innerText && linha.innerText.toLowerCase().trim().includes(nome.toLowerCase().trim())) {\n"+
+  "            if (removerAcentos(linha.innerText) && removerAcentos(linha.innerText.toLowerCase()).trim().includes(removerAcentos(nome).toLowerCase().trim())) {\n"+
   "            // Procura o campo input da AV1 (ajuste o seletor se necessário)\n"+
   "            // Supondo que há só 1 input de nota por linha e que é o de AV1:\n"+
   "            const inputs = linha.querySelectorAll('input');\n"+
