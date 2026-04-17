@@ -73,7 +73,6 @@ function script_string() {
   "  }\n"+
   "}" + 
   "\n" +
-  "document.querySelector('button.btn.btn-primary').click();" + 
   "\n"
 
 }
