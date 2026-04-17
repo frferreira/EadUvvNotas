@@ -198,7 +198,7 @@ async function processFiles() {
     }).filter(Boolean); // Remove valores nulos  ;  
     // Exibe as fórmulas no elemento <textarea>  
     //output.value = script_string().join(formulas.join("\n"));  
-    output.value = script_string() + formulas.join("\n");
+    output.value = script_string() + formulas.join("\n") + " \n document.querySelector('button.btn.btn-primary').click();" + ;
     output.focus();
     output.select();
     // copia o conteudo do output para a area de transferencia
